@@ -142,7 +142,7 @@ Healthcare-Analytics-SQL/
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/Healthcare-Analytics-SQL.git
+    git clone https://github.com/Salma-fathi/Healthcare-Analytics-SQL.git
     cd Healthcare-Analytics-SQL
     ```
 2.  **Prepare the environment:** Ensure you have Python and SQLite installed.
