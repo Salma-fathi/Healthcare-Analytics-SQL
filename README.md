@@ -146,9 +146,9 @@ To complement the SQL analysis, this project includes an interactive **Power BI 
 
 ### Dashboard Screenshots
 
-![Healthcare Performance & Readmission Dashboard](./PowerBI/assets/powerbi-dashboard-overview.png)
+![Healthcare Performance & Readmission Dashboard](https://raw.githubusercontent.com/Salma-fathi/Healthcare-Analytics-SQL/master/PowerBI/assets/powerbi-dashboard-overview.png)
 
-![Clinical & Resource Utilization Analysis](./PowerBI/assets/powerbi-dashboard-clinical-utilization.png)
+![Clinical & Resource Utilization Analysis](https://raw.githubusercontent.com/Salma-fathi/Healthcare-Analytics-SQL/master/PowerBI/assets/powerbi-dashboard-clinical-utilization.png)
 
 ## Project Structure
 
