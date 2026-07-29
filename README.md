@@ -2,6 +2,13 @@
 
 This project demonstrates advanced SQL capabilities for analyzing a real-world healthcare dataset, focusing on patient readmission, resource utilization, and clinical insights. It showcases data modeling, complex querying techniques, and actionable insights derived from healthcare data.
 
+### Dashboard Screenshots
+
+![Healthcare Performance & Readmission Dashboard](https://raw.githubusercontent.com/Salma-fathi/Healthcare-Analytics-SQL/master/PowerBI/assets/Healthcare%20Performance%20%26%20Readmission.PNG)
+
+![Clinical & Resource Utilization Analysis](https://raw.githubusercontent.com/Salma-fathi/Healthcare-Analytics-SQL/master/PowerBI/assets/Clinical%20%26%20Resource%20Utilization%20Analysis.PNG)
+
+
 ## Project Goal
 
 The primary goal of this project is to leverage SQL for in-depth analysis of patient encounter data to:
@@ -15,6 +22,7 @@ The primary goal of this project is to leverage SQL for in-depth analysis of pat
 The dataset used is the **Diabetic Hospital Readmission Dataset**, representing 10 years (1999-2008) of clinical care at 130 US hospitals. It includes over 50 features covering patient demographics, admission details, diagnoses, lab tests, medications, and readmission status.
 
 **Source:** [Kaggle - Hospital Readmission Prediction](https://www.kaggle.com/datasets/vanpatangan/readmission-dataset) (Original source: UCI Machine Learning Repository)
+
 
 ## Methodology
 
@@ -144,11 +152,6 @@ To complement the SQL analysis, this project includes an interactive **Power BI 
 - Medication vs. lab procedures utilization
 - High-risk patient detail table (patient-level drilldown)
 
-### Dashboard Screenshots
-
-![Healthcare Performance & Readmission Dashboard](https://raw.githubusercontent.com/Salma-fathi/Healthcare-Analytics-SQL/master/PowerBI/assets/Healthcare%20Performance%20%26%20Readmission.PNG)
-
-![Clinical & Resource Utilization Analysis](https://raw.githubusercontent.com/Salma-fathi/Healthcare-Analytics-SQL/master/PowerBI/assets/Clinical%20%26%20Resource%20Utilization%20Analysis.PNG)
 
 ## Project Structure
 
