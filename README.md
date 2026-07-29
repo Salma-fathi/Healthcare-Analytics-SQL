@@ -1,6 +1,6 @@
 # Healthcare Analytics: Deep SQL Insights
 
-This project demonstrates advanced SQL capabilities for analyzing a real-world healthcare dataset, focusing on patient readmission, resource utilization, and clinical insights. It showcases data modeling, complex querying techniques, and actionable insights derived from healthcare data.
+This project demonstrates advanced SQL capabilities for analyzing a real-world healthcare dataset, focusing on patient readmission, resource utilization, and clinical insights. It showcases data modeling with a Star Schema, complex query techniques, and data visualization through Power BI.
 
 ### Dashboard Screenshots
 
@@ -19,7 +19,7 @@ The primary goal of this project is to leverage SQL for in-depth analysis of pat
 
 ## Dataset
 
-The dataset used is the **Diabetic Hospital Readmission Dataset**, representing 10 years (1999-2008) of clinical care at 130 US hospitals. It includes over 50 features covering patient demographics, admission details, diagnoses, lab tests, medications, and readmission status.
+The dataset used is the **Diabetic Hospital Readmission Dataset**, representing 10 years (1999-2008) of clinical care at 130 US hospitals. It includes over 50 features covering patient demographics, diagnoses, medications, and encounter outcomes.
 
 **Source:** [Kaggle - Hospital Readmission Prediction](https://www.kaggle.com/datasets/vanpatangan/readmission-dataset) (Original source: UCI Machine Learning Repository)
 
@@ -42,7 +42,7 @@ The dataset used is the **Diabetic Hospital Readmission Dataset**, representing 
 
 ### 1. Comprehensive Patient Risk Stratification
 
-This query creates a multi-dimensional risk profile for each patient encounter, considering clinical complexity, resource utilization, and readmission history. It helps in identifying high-risk patients requiring immediate intervention.
+This query creates a multi-dimensional risk profile for each patient encounter, considering clinical complexity, resource utilization, and readmission history. It helps in identifying high-risk patients requiring immediate attention.
 
 **SQL Query:**
 ```sql
@@ -64,7 +64,7 @@ JOIN Dim_Patients p ON f.patient_nbr = p.patient_nbr
 LIMIT 20;
 ```
 
-**Insights:** This analysis provides a granular view of patient risk based on readmission status and resource utilization within specific age brackets. It highlights that even within the same age group, patients can have significantly different risk profiles depending on their prior healthcare usage and readmission patterns.
+**Insights:** This analysis provides a granular view of patient risk based on readmission status and resource utilization within specific age brackets. It highlights that even within the same age group, resource use can vary significantly among patients with different readmission outcomes.
 
 ### 2. Medication Impact on Readmission Rates
 
@@ -85,11 +85,11 @@ GROUP BY 1
 ORDER BY 1;
 ```
 
-**Insights:** This analysis helps in understanding if a higher number of medications is associated with a higher readmission rate, which can inform medication management strategies and patient education initiatives.
+**Insights:** This analysis helps in understanding if a higher number of medications is associated with a higher readmission rate, which can inform medication management strategies and patient education.
 
 ### 3. Specialty-Based Performance Metrics (by Admission Type)
 
-This query identifies performance metrics (average length of stay, lab procedures, and readmission rates) grouped by admission type. This is crucial for hospital management to assess efficiency and quality of care across different admission pathways.
+This query identifies performance metrics (average length of stay, lab procedures, and readmission rates) grouped by admission type. This is crucial for hospital management to assess efficiency and quality across different admission pathways.
 
 **SQL Query:**
 ```sql
@@ -105,11 +105,11 @@ GROUP BY admission_type_id
 ORDER BY readmission_rate_pct DESC;
 ```
 
-**Insights:** By analyzing these metrics per admission type, hospitals can identify areas of excellence or concern, leading to targeted interventions to improve patient flow, resource allocation, and post-discharge follow-up protocols.
+**Insights:** By analyzing these metrics per admission type, hospitals can identify areas of excellence or concern, leading to targeted interventions to improve patient flow, resource allocation, and discharge planning.
 
 ### 4. Patient Cohort Analysis: Chronic vs. Acute
 
-This analysis segments patients based on their historical inpatient, outpatient, and emergency visits to identify chronic high-utilizers versus acute/low-utilizers. This helps in tailoring care plans and preventive strategies.
+This analysis segments patients based on their historical inpatient, outpatient, and emergency visits to identify chronic high-utilizers versus acute/low-utilizers. This helps in tailoring care plans and resource allocation.
 
 **SQL Query:**
 ```sql
@@ -131,7 +131,7 @@ HAVING encounter_count_in_dataset > 1
 LIMIT 20;
 ```
 
-**Insights:** Understanding patient cohorts allows healthcare providers to develop proactive strategies for managing chronic conditions, reduce emergency visits for high-risk patients, and optimize long-term healthcare utilization.
+**Insights:** Understanding patient cohorts allows healthcare providers to develop proactive strategies for managing chronic conditions, reduce emergency visits for high-risk patients, and optimize long-term care coordination.
 
 ## Power BI Dashboard
 
@@ -152,22 +152,51 @@ To complement the SQL analysis, this project includes an interactive **Power BI 
 - Medication vs. lab procedures utilization
 - High-risk patient detail table (patient-level drilldown)
 
+## Power BI Report File (.pbix)
+
+This repository includes the full Power BI report file:
+
+- `PowerBI/Healthcare_Performance_&_Readmission_Analysis.pbix`
+
+### What this file contains
+The `.pbix` file is the editable Power BI Desktop project for this analysis.  
+It includes:
+- Data model relationships used for healthcare analytics
+- DAX measures and calculated fields
+- Visual pages for readmission, utilization, and clinical insights
+- Interactive filters/slicers used in the dashboard
+
+### Why it is included
+This file allows anyone to:
+- Open and explore the dashboard interactively
+- Review how visuals and KPIs were built
+- Reuse or extend the analysis for similar healthcare datasets
+
+### How to open it
+1. Install **Power BI Desktop** (Windows)
+2. Download or clone this repository
+3. Open: `PowerBI/Healthcare_Performance_&_Readmission_Analysis.pbix`
+4. If prompted, refresh data connections
+
+> Note: GitHub cannot render `.pbix` files directly in the browser.  
+> Use the dashboard screenshots in `PowerBI/assets/` for preview.
 
 ## Project Structure
 
 ```
 Healthcare-Analytics-SQL/
 ├── data/
-│   └── healthcare_data.csv             # Raw dataset
+│   └── healthcare_data.csv                                 # Raw dataset
 ├── sql/
-│   └── healthcare_star_schema.py       # Python script to build Star Schema
-│   └── deep_healthcare_analysis.sql    # Advanced SQL queries
+│   ├── healthcare_star_schema.py                           # Python script to build Star Schema
+│   └── deep_healthcare_analysis.sql                        # Advanced SQL queries
 ├── PowerBI/
+│   ├── Healthcare_Performance_&_Readmission_Analysis.pbix  # Power BI report file
 │   └── assets/
 │       ├── Healthcare Performance & Readmission.PNG
 │       └── Clinical & Resource Utilization Analysis.PNG
-├── README.md                           # Project overview and analysis details
-└── healthcare.db                       # SQLite database (generated)
+├── README.md                                               # Project overview and analysis details
+└── healthcare.db                                           # SQLite database (generated)
 ```
 
 ## How to Run the Project
