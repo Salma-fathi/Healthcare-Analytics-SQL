@@ -125,6 +125,31 @@ LIMIT 20;
 
 **Insights:** Understanding patient cohorts allows healthcare providers to develop proactive strategies for managing chronic conditions, reduce emergency visits for high-risk patients, and optimize long-term healthcare utilization.
 
+## Power BI Dashboard
+
+To complement the SQL analysis, this project includes an interactive **Power BI dashboard** for monitoring readmission risk, utilization trends, and patient-level insights.
+
+### Dashboard Highlights
+- **102K** total encounters
+- **2K** total patients
+- **11.16%** readmissions within 30 days
+- **4.40** average length of stay
+- **16.02** average medications
+
+### Key Visuals
+- Readmission rate by **age group**
+- Patients distribution by **gender**
+- Encounter volume by **admission type**
+- Top diagnoses by **readmission count**
+- Medication vs. lab procedures utilization
+- High-risk patient detail table (patient-level drilldown)
+
+### Dashboard Screenshots
+
+![Healthcare Performance & Readmission Dashboard](./PowerBI/assets/powerbi-dashboard-overview.png)
+
+![Clinical & Resource Utilization Analysis](./PowerBI/assets/powerbi-dashboard-clinical-utilization.png)
+
 ## Project Structure
 
 ```
@@ -134,6 +159,10 @@ Healthcare-Analytics-SQL/
 ├── sql/
 │   └── healthcare_star_schema.py       # Python script to build Star Schema
 │   └── deep_healthcare_analysis.sql    # Advanced SQL queries
+├── PowerBI/
+│   └── assets/
+│       ├── powerbi-dashboard-overview.png
+│       └── powerbi-dashboard-clinical-utilization.png
 ├── README.md                           # Project overview and analysis details
 └── healthcare.db                       # SQLite database (generated)
 ```
