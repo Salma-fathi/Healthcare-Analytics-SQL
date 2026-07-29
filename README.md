@@ -190,7 +190,6 @@ Healthcare-Analytics-SQL/
 
 ## Future Enhancements
 
-*   **Power BI Dashboard:** Create an interactive Power BI dashboard to visualize these insights.
 *   **Predictive Modeling:** Implement machine learning models (e.g., Logistic Regression) to predict readmission risk more accurately.
 *   **Time-Series Analysis:** Incorporate more sophisticated time-series analysis for trends in patient admissions and discharges.
 *   **Integration with EMR:** Simulate integration with Electronic Medical Records (EMR) for real-time data analysis.
