@@ -1,6 +1,6 @@
 # Healthcare Analytics: Deep SQL Insights
 
-This project demonstrates advanced SQL capabilities for analyzing a real-world healthcare dataset, focusing on patient readmission, resource utilization, and clinical insights. It showcases data modeling (Star Schema), complex query writing (Window Functions, CTEs, Conditional Logic), and the extraction of actionable intelligence crucial for healthcare management and policy.
+This project demonstrates advanced SQL capabilities for analyzing a real-world healthcare dataset, focusing on patient readmission, resource utilization, and clinical insights. It showcases data modeling, complex querying techniques, and actionable insights derived from healthcare data.
 
 ## Project Goal
 
@@ -12,7 +12,7 @@ The primary goal of this project is to leverage SQL for in-depth analysis of pat
 
 ## Dataset
 
-The dataset used is the **Diabetic Hospital Readmission Dataset**, representing 10 years (1999-2008) of clinical care at 130 US hospitals. It includes over 50 features covering patient demographics, admission details, diagnoses, medications, lab procedures, and readmission status.
+The dataset used is the **Diabetic Hospital Readmission Dataset**, representing 10 years (1999-2008) of clinical care at 130 US hospitals. It includes over 50 features covering patient demographics, admission details, diagnoses, lab tests, medications, and readmission status.
 
 **Source:** [Kaggle - Hospital Readmission Prediction](https://www.kaggle.com/datasets/vanpatangan/readmission-dataset) (Original source: UCI Machine Learning Repository)
 
@@ -34,7 +34,7 @@ The dataset used is the **Diabetic Hospital Readmission Dataset**, representing 
 
 ### 1. Comprehensive Patient Risk Stratification
 
-This query creates a multi-dimensional risk profile for each patient encounter, considering clinical complexity, resource utilization, and readmission history. It helps in identifying high-risk patients who might require more intensive care management or follow-up.
+This query creates a multi-dimensional risk profile for each patient encounter, considering clinical complexity, resource utilization, and readmission history. It helps in identifying high-risk patients requiring immediate intervention.
 
 **SQL Query:**
 ```sql
@@ -47,8 +47,8 @@ SELECT
     num_lab_procedures,
     RANK() OVER (PARTITION BY age ORDER BY num_lab_procedures DESC) as lab_rank_in_age_group,
     CASE 
-        WHEN readmitted = <'30' THEN 'High Risk'
-        WHEN readmitted = >'30' THEN 'Medium Risk'
+        WHEN readmitted = '<30' THEN 'High Risk'
+        WHEN readmitted = '>30' THEN 'Medium Risk'
         ELSE 'Low Risk'
     END as risk_profile
 FROM Fact_Encounters f
@@ -56,7 +56,7 @@ JOIN Dim_Patients p ON f.patient_nbr = p.patient_nbr
 LIMIT 20;
 ```
 
-**Insights:** This analysis provides a granular view of patient risk based on readmission status and resource utilization within specific age brackets. It highlights that even within the same age group, there's a wide range of lab procedure usage, indicating varying levels of medical complexity or intervention.
+**Insights:** This analysis provides a granular view of patient risk based on readmission status and resource utilization within specific age brackets. It highlights that even within the same age group, patients can have significantly different risk profiles depending on their prior healthcare usage and readmission patterns.
 
 ### 2. Medication Impact on Readmission Rates
 
@@ -70,18 +70,18 @@ SELECT
     MIN(num_medications) as min_meds,
     MAX(num_medications) as max_meds,
     COUNT(*) as total_encounters,
-    SUM(CASE WHEN readmitted = <'30' THEN 1 ELSE 0 END) as readmissions_under_30,
-    ROUND(SUM(CASE WHEN readmitted = <'30' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as readmission_rate_pct
+    SUM(CASE WHEN readmitted = '<30' THEN 1 ELSE 0 END) as readmissions_under_30,
+    ROUND(SUM(CASE WHEN readmitted = '<30' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as readmission_rate_pct
 FROM Fact_Encounters
 GROUP BY 1
 ORDER BY 1;
 ```
 
-**Insights:** This analysis helps in understanding if a higher number of medications is associated with a higher readmission rate, which can inform medication management strategies and patient education.
+**Insights:** This analysis helps in understanding if a higher number of medications is associated with a higher readmission rate, which can inform medication management strategies and patient education initiatives.
 
 ### 3. Specialty-Based Performance Metrics (by Admission Type)
 
-This query identifies performance metrics (average length of stay, lab procedures, and readmission rates) grouped by admission type. This is crucial for hospital management to assess efficiency and quality across different service lines.
+This query identifies performance metrics (average length of stay, lab procedures, and readmission rates) grouped by admission type. This is crucial for hospital management to assess efficiency and quality of care across different admission pathways.
 
 **SQL Query:**
 ```sql
@@ -91,17 +91,17 @@ SELECT
     COUNT(*) as total_encounters,
     ROUND(AVG(time_in_hospital), 2) as avg_length_of_stay,
     ROUND(AVG(num_lab_procedures), 2) as avg_lab_procedures,
-    ROUND(SUM(CASE WHEN readmitted = <'30' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as readmission_rate_pct
+    ROUND(SUM(CASE WHEN readmitted = '<30' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as readmission_rate_pct
 FROM Fact_Encounters
 GROUP BY admission_type_id
 ORDER BY readmission_rate_pct DESC;
 ```
 
-**Insights:** By analyzing these metrics per admission type, hospitals can identify areas of excellence or concern, leading to targeted interventions to improve patient flow, resource allocation, and reduce readmissions for specific types of admissions.
+**Insights:** By analyzing these metrics per admission type, hospitals can identify areas of excellence or concern, leading to targeted interventions to improve patient flow, resource allocation, and post-discharge follow-up protocols.
 
 ### 4. Patient Cohort Analysis: Chronic vs. Acute
 
-This analysis segments patients based on their historical inpatient, outpatient, and emergency visits to identify chronic high-utilizers versus acute/low-utilizers. This helps in tailoring care plans and resource allocation.
+This analysis segments patients based on their historical inpatient, outpatient, and emergency visits to identify chronic high-utilizers versus acute/low-utilizers. This helps in tailoring care plans and preventive strategies.
 
 **SQL Query:**
 ```sql
@@ -123,7 +123,7 @@ HAVING encounter_count_in_dataset > 1
 LIMIT 20;
 ```
 
-**Insights:** Understanding patient cohorts allows healthcare providers to develop proactive strategies for managing chronic conditions, reduce emergency visits for high-risk patients, and optimize long-term care planning.
+**Insights:** Understanding patient cohorts allows healthcare providers to develop proactive strategies for managing chronic conditions, reduce emergency visits for high-risk patients, and optimize long-term healthcare utilization.
 
 ## Project Structure
 
